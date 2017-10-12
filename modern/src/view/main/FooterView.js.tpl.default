@@ -1,0 +1,6 @@
+Ext.define('{appName}.view.main.FooterView', {
+	extend: 'Ext.Container',
+	xtype: '{appName}-footerview',
+	cls: 'footerview',
+	html: '<div style="font-size:24px;">{appName}-footerview</div>'
+});

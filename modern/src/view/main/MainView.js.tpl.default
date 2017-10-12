@@ -1,0 +1,15 @@
+Ext.define('{appName}.view.main.MainView', {
+	extend: 'Ext.Container',
+	xtype: '{appName}-mainview',
+	requires: ['Ext.layout.Fit'],
+	controller: '{appName}-mainviewcontroller',
+	viewModel: '{appName}-mainviewmodel',
+	layout: 'fit',
+	items: [
+		{	xtype: '{appName}-navigationview', docked: 'left',   reference: '{appName}-navigationview', bind: {width:  '\{{appName}_menuview_width\}'}    },
+		{ xtype: '{appName}-headerview',     docked: 'top',    reference: '{appName}-headerview',     bind: {height: '\{{appName}_headerview_height\}'} },
+		{ xtype: '{appName}-footerview',     docked: 'bottom', reference: '{appName}-footerview',     bind: {height: '\{{appName}_footerview_height\}'} },
+		{ xtype: '{appName}-centerview',                       reference: '{appName}-centerview' },
+		{	xtype: '{appName}-detailview',     docked: 'right',  reference: '{appName}-detailview',     bind: {width:  '\{{appName}_detailview_width\}'}  },
+	]
+});

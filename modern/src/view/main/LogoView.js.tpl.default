@@ -1,0 +1,8 @@
+Ext.define('{appName}.view.main.LogoView', {
+	extend: 'Ext.Container',
+	xtype: '{appName}-logoview',
+	cls: 'logoview',
+	html: `
+<img class="logoimage" src="resources/app/images/senchacon.png" alt="Logo Here">
+	`
+});
