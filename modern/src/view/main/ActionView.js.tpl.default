@@ -1,6 +1,0 @@
-Ext.define('{appName}.view.main.ActionView', {
-	extend: 'Ext.Container',
-	xtype: '{appName}-actionview',
-	cls: 'actionview',
-	html: '<div style="font-size:24px;">{appName}-actionview</div>'
-});

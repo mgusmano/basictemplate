@@ -1,0 +1,8 @@
+Ext.define('{appName}.view.nav.logo.LogoView', {
+	extend: 'Ext.Container',
+	xtype: 'logoview',
+	cls: 'logoview',
+	bind: { html: '<img class="xlogoimage" src="resources/images/\u007Blogoview_image}" alt="Logo Here">' }
+
+	//html: `<img class="logoimage" src="resources/images/sencha.png" alt="Logo Here">`
+});

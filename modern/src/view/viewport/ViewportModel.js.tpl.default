@@ -1,0 +1,7 @@
+Ext.define('{appName}.view.viewport.ViewportModel', {
+	extend: 'Ext.app.ViewModel',
+	alias: 'viewmodel.viewportmodel',
+	data: {
+		name: '{appName}'
+	}
+});

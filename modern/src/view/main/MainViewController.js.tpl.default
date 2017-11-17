@@ -1,15 +1,16 @@
 Ext.define('{appName}.view.main.MainViewController', {
 	extend: 'Ext.app.ViewController',
-	alias: 'controller.{appName}-mainviewcontroller',
+	alias: 'controller.mainviewcontroller',
 
 	init: function() {
+		var menuview = this.lookup('menuview');
 		var me = this;
 		me.getServerData()
 		.then(function(response) {
 			var vm = me.getViewModel(); 
 			vm.set('navCollapsed', false);
 			vm.set('detailCollapsed', true);
-			me.lookup('{appName}-menuview').setStore(response.menuData);
+			menuview.setStore(response.menuData);
 			me.redirectTo( location.hash.slice(1), true );
 		}, function(e) {
 			console.log(e);
@@ -20,7 +21,7 @@ Ext.define('{appName}.view.main.MainViewController', {
 		return new Ext.Promise(function (resolve, reject) {
 			try {
 				Ext.Ajax.request({
-					url: 'resources/app/data/menu.json',
+					url: 'resources/data/menu.json',
 					success: function(response, opts) {
 						var menuData = Ext.decode(response.responseText);
 						resolve({ menuData: menuData });
@@ -41,13 +42,14 @@ Ext.define('{appName}.view.main.MainViewController', {
 	},
 
 	mainRoute:function(xtype) {
+		var menuview = this.lookup('menuview');
+		var centerview = this.lookup('centerview');
+
 		var exists = Ext.ClassManager.getByAlias('widget.' + xtype);
 		if (exists === undefined) {
 			console.log(xtype + ' does not exist');
 			return;
 		}
-		var menuview = this.lookup('{appName}-menuview');
-		var centerview = this.lookup('{appName}-centerview');
 		var node = menuview.getStore().findNode('xtype', xtype);
 		if (node == null) {
 			console.log('unmatchedRoute: ' + xtype);

@@ -1,0 +1,9 @@
+Ext.define('{appName}.view.nav.NavView', {
+	extend: 'Ext.Panel',
+	xtype: 'navview',
+	cls: 'navview',
+	layout: 'fit',
+	tbar: {xtype: 'logoview', bind: {height: '\u007Blogoview_height}'}},
+	items: [ {xtype: 'menuview', reference: 'menuview', bind: {width: '\u007Bmenuview_width}'}} ],
+	bbar: {xtype: 'actionview', bind: {height: '\u007Bactionview_height}'}}
+});

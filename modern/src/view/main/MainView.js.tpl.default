@@ -1,15 +1,14 @@
 Ext.define('{appName}.view.main.MainView', {
 	extend: 'Ext.Container',
-	xtype: '{appName}-mainview',
-	requires: ['Ext.layout.Fit'],
-	controller: '{appName}-mainviewcontroller',
-	viewModel: '{appName}-mainviewmodel',
+	xtype: 'mainview',
+	controller: 'mainviewcontroller',
+	viewModel: 'mainviewmodel',
 	layout: 'fit',
 	items: [
-		{	xtype: '{appName}-navigationview', docked: 'left',   reference: '{appName}-navigationview', bind: {width:  '\{{appName}_menuview_width\}'}    },
-		{ xtype: '{appName}-headerview',     docked: 'top',    reference: '{appName}-headerview',     bind: {height: '\{{appName}_headerview_height\}'} },
-		{ xtype: '{appName}-footerview',     docked: 'bottom', reference: '{appName}-footerview',     bind: {height: '\{{appName}_footerview_height\}'} },
-		{ xtype: '{appName}-centerview',                       reference: '{appName}-centerview' },
-		{	xtype: '{appName}-detailview',     docked: 'right',  reference: '{appName}-detailview',     bind: {width:  '\{{appName}_detailview_width\}'}  },
+		{ xtype: 'navview',    docked: 'left',   reference: 'navview',    bind: {width:  '\u007Bmenuview_width}'}    },
+		{ xtype: 'headerview', docked: 'top',    reference: 'headerview', bind: {height: '\u007Bheaderview_height}'} },
+		{ xtype: 'footerview', docked: 'bottom', reference: 'footerview', bind: {height: '\u007Bfooterview_height}'} },
+		{ xtype: 'centerview',                   reference: 'centerview' },
+		{ xtype: 'detailview', docked: 'right',  reference: 'detailview', bind: {width:  '\u007Bdetailview_width}'}  },
 	]
 });

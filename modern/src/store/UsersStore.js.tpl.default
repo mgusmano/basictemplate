@@ -1,0 +1,11 @@
+Ext.define('{appName}.store.UsersStore', {
+	extend: 'Ext.data.Store',
+	alias: 'store.users',
+	model: '{appName}.model.UsersModel',
+	proxy: {
+		type: 'rest',
+		url: 'http://localhost:8090/users'
+		//url: 'http://10.211.55.3:8090/users'
+	},
+	autoLoad: true
+});

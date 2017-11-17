@@ -1,28 +1,38 @@
 Ext.define('{appName}.view.main.MainViewModel', {
 	extend: 'Ext.app.ViewModel',
-	alias: 'viewmodel.{appName}-mainviewmodel',
+	alias: 'viewmodel.mainviewmodel',
 	data: {
 		name: '{appName}',
 		logo: 'senchacon.png',
 		navCollapsed: false,
-		{appName}_logoview_height:     75,
-		{appName}_menuview_max_width: 300,
-		{appName}_menuview_min_width:  44,
-		{appName}_actionview_height:   80,
-		{appName}_headerview_height:   50,
-		{appName}_footerview_height:   50,
-		{appName}_detailview_width:      10,
-		{appName}_detailview_max_width: 300,
-		{appName}_detailview_min_width:   0,
+		logoview_height:     75,
+		menuview_max_width: 300,
+		menuview_min_width:  44,
+		actionview_height:   80,
+		headerview_height:   50,
+		footerview_height:   50,
+		detailview_width:      10,
+		detailview_max_width: 300,
+		detailview_min_width:   0,
 
 	},
 	formulas: {
-		{appName}_menuview_width: function(get) {
-			var width = get('navCollapsed') ? get('{appName}_menuview_min_width') : get('{appName}_menuview_max_width');
+		logoview_image: function(get) {
+			var image = '';
+			if (get('navCollapsed') == true) {
+				image = 'SenchaSmall.png';
+			} 
+			else {
+				image = 'SenchaLarge.png';
+			}
+			return image;
+		},
+		menuview_width: function(get) {
+			var width = get('navCollapsed') ? get('menuview_min_width') : get('menuview_max_width');
 			return width;
 		},
-		{appName}_detailview_width: function(get) {
-			var width = get('detailCollapsed') ? get('{appName}_detailview_min_width') : get('{appName}_detailview_max_width');
+		detailview_width: function(get) {
+			var width = get('detailCollapsed') ? get('detailview_min_width') : get('detailview_max_width');
 			return width;
 		}
 	}
