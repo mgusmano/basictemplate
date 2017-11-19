@@ -1,2 +1,17 @@
-$panel-navigation-background-color: #32404e;
-.actionview { border-left: 0; border-top: 0; box-shadow: 0 0 10px rgba(51, 51, 51, 0.4); color: white; background-color: $panel-navigation-background-color }
+.actionview { 
+	border-left: 0; 
+	border-top: 0; 
+	color: $base_foreground_color; 
+	background-color: $panel-navigation-background-color ;
+}
+
+@include button-ui(
+  $ui: 'actionbutton',
+	$background-color: transparent,
+	$color: $base_foreground_color,
+  $border-color: transparent
+  // $inner-border-color-focus: transparent,
+  // $inner-border-color-focus-over: transparent,
+  // $inner-border-color-focus-pressed: transparent,
+  // $background-color-over: $nav-base-color
+);

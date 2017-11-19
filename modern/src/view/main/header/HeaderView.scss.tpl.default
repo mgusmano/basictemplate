@@ -2,7 +2,7 @@
 	border-left: 0;
 	border-top: 0;
 	color: white;
-	background-color: $base-color
+	background-color: $base-app-color;
 }
 
 $nav-base-color: lighten(#191919, 10%);
@@ -10,8 +10,9 @@ $nav-text-color: #bbb;
 
 @include button-ui(
   $ui: 'headerbutton',
-  $background-color: transparent,
-	$icon-color: white,
+	$background-color: transparent,
+	$color: $base_foreground_color,
+	$icon-color: $base_foreground_color,
   $border-color: transparent
   // $inner-border-color-focus: transparent,
   // $inner-border-color-focus-over: transparent,

@@ -1,10 +1,13 @@
-$panel-navigation-background-color: #32404e;
-$panel-navigation-item-text-color: #fff;
+$panel-navigation-background-color: darken($base_color,25%);
+
+$xpanel-navigation-item-text-color: #fff;
+$panel-navigation-item-text-color: $base_foreground_color;
+
+
 $treelist-font-size: 16px;
 
-$xnav-base-color: lighten(#191919, 10%);
 $nav-base-color: lighten($panel-navigation-background-color, 20%);
-$nav-text-color: white;
+$nav-text-color: $base_foreground_color;
 $nav-bg-color-over: lighten($nav-base-color, 10%);
 $nav-bg-color-selected: lighten($nav-base-color, 5%);
 $nav-text-color-over: lighten($nav-text-color, 20%);

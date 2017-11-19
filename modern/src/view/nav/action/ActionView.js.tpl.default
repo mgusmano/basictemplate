@@ -1,6 +1,15 @@
 Ext.define('{appName}.view.nav.action.ActionView', {
-	extend: 'Ext.Container',
+	extend: 'Ext.Toolbar',
 	xtype: 'actionview',
 	cls: 'actionview',
-	html: '<div style="font-size:24px;">actionview</div>'
+
+	items: [
+		{
+			xtype: 'button',
+			ui: 'actionbutton',
+			iconCls: 'x-fa fa-angle-double-left',
+			text: 'Log Out',
+			handler: 'onLogOut'
+		}
+	]
 });

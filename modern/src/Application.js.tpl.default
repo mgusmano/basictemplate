@@ -6,17 +6,32 @@ Ext.define('{appName}.Application', {
 		'Ext.layout.Fit',
 		'Ext.data.TreeStore',
 		'Ext.layout.Card',
-	],
+		'Ext.form.Panel',
+		'Ext.field.Display',
+		'Ext.data.proxy.Rest',
 
-//	viewport: {
-//		controller: 'viewportcontroller',
-//		viewModel: 'viewportmodel'
-//	},
+	],
 	defaultToken: 'homeview',
 
 	launch: function () {
-		//Ext.Viewport.getController().onLaunch();
-		Ext.Viewport.add([{ xtype: 'mainview'}]);
+		Ext.getBody().removeCls('launching');
+		var elem = document.getElementById("splash");
+		elem.parentNode.removeChild(elem);
+
+		var loggedIn = localStorage.getItem("LoggedIn");
+		console.log(loggedIn)
+		var whichView;
+		if(loggedIn == 'false') {
+			whichView = 'loginview'
+		}
+		else {
+			whichView = 'mainview'
+		}
+		console.log(whichView)
+		
+		Ext.Viewport.add([{xtype: whichView}]);
+		//Ext.Viewport.add([{xtype: loggedIn ? 'mainview' : 'loginview'}]);
+		//Ext.Viewport.add([{ xtype: 'mainview'}]);
 	},
 
 	onAppUpdate: function () {
@@ -29,5 +44,11 @@ Ext.define('{appName}.Application', {
 		);
 	}
 });
+
+//	viewport: {
+//		controller: 'viewportcontroller',
+//		viewModel: 'viewportmodel'
+//	},
+//Ext.Viewport.getController().onLaunch();
 
 //sencha generate view groups.GroupsView

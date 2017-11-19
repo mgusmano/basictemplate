@@ -5,10 +5,10 @@ Ext.define('{appName}.view.main.MainView', {
 	viewModel: 'mainviewmodel',
 	layout: 'fit',
 	items: [
-		{ xtype: 'navview',    docked: 'left',   reference: 'navview',    bind: {width:  '\u007Bmenuview_width}'}    },
-		{ xtype: 'headerview', docked: 'top',    reference: 'headerview', bind: {height: '\u007Bheaderview_height}'} },
-		{ xtype: 'footerview', docked: 'bottom', reference: 'footerview', bind: {height: '\u007Bfooterview_height}'} },
-		{ xtype: 'centerview',                   reference: 'centerview' },
-		{ xtype: 'detailview', docked: 'right',  reference: 'detailview', bind: {width:  '\u007Bdetailview_width}'}  },
+		{ xtype: 'navview',    reference: 'navview',    docked: 'left',   bind: {width:  '\u007Bnavview_width}'}    },
+		{ xtype: 'headerview', reference: 'headerview', docked: 'top',    bind: {height: '\u007Bheaderview_height}'} },
+		{ xtype: 'footerview', reference: 'footerview', docked: 'bottom', bind: {height: '\u007Bfooterview_height}'} },
+		{ xtype: 'centerview', reference: 'centerview' },
+		{ xtype: 'detailview', reference: 'detailview', docked: 'right',  bind: {width:  '\u007Bdetailview_width}'}  },
 	]
 });

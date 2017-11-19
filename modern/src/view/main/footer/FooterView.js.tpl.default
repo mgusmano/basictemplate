@@ -1,6 +1,20 @@
 Ext.define('{appName}.view.main.footer.FooterView', {
-	extend: 'Ext.Container',
+	extend: 'Ext.Toolbar',
 	xtype: 'footerview',
 	cls: 'footerview',
-	html: '<div style="font-size:24px;">footerview</div>'
+
+	items: [
+		{ 
+			xtype: 'container',
+			html: 'footer'
+			//bind: { html: '{heading}' }
+		},
+		'->',
+		{
+			xtype: 'button',
+			ui: 'footerbutton',
+			iconCls: 'x-fa fa-automobile'
+		}
+	]
+
 });

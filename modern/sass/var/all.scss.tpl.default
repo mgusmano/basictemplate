@@ -1,0 +1,24 @@
+// $deep-blue: #32404e;
+// $b01:#88a8c3;
+// $b02: red;
+// $b03: #085878;
+//$muted-blue: #4bacd6;
+$Sencha-blue: #094158;
+
+$Sencha: #24bcf8;
+
+$HKHA: #f7101d;
+
+$base_color: lighten($Sencha-blue,25%);
+// $color: white;
+// //$base_foreground_color: red;
+
+$panel-navigation-background-color: darken($base_color,25%);
+$base-app-color: darken($base_color,0%);
+
+$panel_header_background_color: $base-app-color;
+
+
+//http://www.0to255.com/064158
+//https://www.w3schools.com/colors/colors_converter.asp
+//https://codepen.io/baudoin/pen/HdliD
