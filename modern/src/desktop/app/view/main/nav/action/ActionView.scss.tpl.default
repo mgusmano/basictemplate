@@ -2,7 +2,7 @@
 	border-left: 0; 
 	border-top: 0; 
 	color: $base_foreground_color; 
-	background-color: $panel-navigation-background-color ;
+	background-color: darken($base_color,25%) ;
 }
 
 @include button-ui(

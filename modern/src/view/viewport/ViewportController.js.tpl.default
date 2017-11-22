@@ -1,8 +1,0 @@
-Ext.define('{appName}.view.viewport.ViewportController', {
-	extend: 'Ext.app.ViewController',
-	alias: 'controller.viewportcontroller',
-
-	onLaunch: function() {
-		console.log('on launch');
-	}
-});

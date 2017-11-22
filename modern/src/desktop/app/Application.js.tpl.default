@@ -21,11 +21,11 @@ Ext.define('{appName}.Application', {
 		var loggedIn = localStorage.getItem("LoggedIn");
 		console.log(loggedIn)
 		var whichView;
-		if(loggedIn == 'false') {
-			whichView = 'loginview'
+		if(loggedIn == 'true') {
+			whichView = 'mainiew'
 		}
 		else {
-			whichView = 'mainview'
+			whichView = 'loginview'
 		}
 		console.log(whichView)
 		

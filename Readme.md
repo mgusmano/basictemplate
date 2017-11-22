@@ -4,7 +4,7 @@ how to use: (assuming an install to ~/aaTemplate/basictemplate on your local mac
 
 sencha -sdk ~/aaExt/ext-6.5.2  generate app -modern -s ~/aaTemplate/basictemplate -r best ./best
 
-
+sencha -sdk ~/aaExt/ext-6.5.2 generate app -modern -s ~/basictemplate -r MyExtApp ./MyExtApp
 
 
 

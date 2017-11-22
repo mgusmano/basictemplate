@@ -1,4 +1,4 @@
-Ext.define('{appName}.view.nav.action.ActionView', {
+Ext.define('{appName}.view.main.nav.action.ActionView', {
 	extend: 'Ext.Toolbar',
 	xtype: 'actionview',
 	cls: 'actionview',

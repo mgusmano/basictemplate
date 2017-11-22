@@ -18,6 +18,9 @@ $base-app-color: darken($base_color,0%);
 
 $panel_header_background_color: $base-app-color;
 
+.x-titlebar {
+	background-color: $base-app-color !important;
+} 
 
 //http://www.0to255.com/064158
 //https://www.w3schools.com/colors/colors_converter.asp

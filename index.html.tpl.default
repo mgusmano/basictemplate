@@ -4,7 +4,27 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=10, user-scalable=yes">
-	<title>{appName}</title>
+	<title>{appName}xx</title>
+<tpl if="toolkit == 'modern'">
+	<script type="text/javascript">
+			var Ext = Ext || {}; // Ext namespace won't be defined yet...
+			Ext.beforeLoad = function (tags) {
+					var s = location.search,  // the query string (ex "?foo=1&bar")
+							profile;
+					if (s.match(/\u005cbdesktop\u005cb/)) {
+							profile = 'desktop';
+					}
+					else if (s.match(/\u005cbphone\u005cb/)) {
+							profile = 'phone';
+					}
+					else {
+							profile = tags.desktop ? 'desktop' : 'phone';
+							//profile = tags.phone ? 'phone' : 'desktop';
+					}
+					Ext.manifest = profile; // this name must match a build profile name
+			};
+	</script>
+</tpl>
 	<!-- The line below must be kept intact for Sencha Cmd to build your application -->
 	<script id="microloader" type="text/javascript" src="bootstrap.js"></script>
 </head>
