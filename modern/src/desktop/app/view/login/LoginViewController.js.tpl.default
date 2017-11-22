@@ -30,9 +30,9 @@ Ext.define('{appName}.view.login.LoginViewController', {
 	getLoginData: function (user, pass) {
 		return new Ext.Promise(function (resolve, reject) {
 			try {
-				var v = 'false'; if(user == 'user') { v = 'true'};
+				var v = 'false'; if(user != '') { v = 'true'};
 				Ext.Ajax.request({
-					url: 'resources/data/login' + v + '.json',
+					url: 'resources/desktop/data/login' + v + '.json',
 					success: function(response, opts) {
 						var o = Ext.decode(response.responseText);
 						resolve(o);

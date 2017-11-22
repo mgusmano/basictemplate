@@ -20,8 +20,8 @@ Ext.define('{appName}.view.login.LoginView',{
 			cls: 'auth-header',
 			html:
 				'<span class="logo x-fa fa-circle-o-notch"></span>'+
-				'<div class="title">Coworkee</div>'+
-				'<div class="caption">Employee directory</div>'
+				'<div class="title">App Name</div>'+
+				'<div class="caption">App Description</div>'
 		}, 
 		{
 			xtype: 'formpanel',

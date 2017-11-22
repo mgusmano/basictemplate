@@ -24,7 +24,7 @@ Ext.define('{appName}.view.main.MainViewController', {
 		return new Ext.Promise(function (resolve, reject) {
 			try {
 				Ext.Ajax.request({
-					url: 'resources/data/menu.json',
+					url: 'resources/desktop/data/menu.json',
 					success: function(response, opts) {
 						var menuData = Ext.decode(response.responseText);
 						resolve({ menuData: menuData });

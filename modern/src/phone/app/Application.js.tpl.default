@@ -3,14 +3,16 @@ Ext.define('{appName}.Application', {
 	name: '{appName}',
 	requires: [
 		'{appName}.*'
+		'Ext.dataview.List',
+		'Ext.field.Date',
+		'Ext.Video',
+		'Ext.carousel.Carousel',
+		'Ext.layout.Center'
 	],
+	defaultToken: 'homeview',
 
 	launch: function () {
-		Ext.getBody().removeCls('launching');
-		var elem = document.getElementById("splash");
-		elem.parentNode.removeChild(elem);
-
-		Ext.Msg.alert('Hello Ext JS', 'Hello! Welcome to Ext JS Phone.');
+		Ext.Viewport.add([{ xtype: 'loginview'}]);
 	},
 
 	onAppUpdate: function () {
