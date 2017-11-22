@@ -1,4 +1,4 @@
-$base-color: red;
+//$base-color: red;
 
 .message2 {
 	color: $base-color;

@@ -2,7 +2,8 @@ $enable-font-awesome: dynamic(true);
 
 body.launching {
 	//@include background-size(cover);
-	background-color: red;
+	background-color: $base-color;
+	color: white;
 	//background-image: url('images/Vertical.png');
 	//background-repeat: no-repeat;
 	//background-position: center;

@@ -15,7 +15,7 @@ Ext.define('{appName}.view.allergy.AllergyView',{
 	items: [
 		{
 			xtype: 'list',
-			bind: '{allergies}',
+			bind: '\u007Ballergies}',
 			emptyText: 'No allergy was found',
 			striped: true,
 			grouped: true,
@@ -45,30 +45,30 @@ Ext.define('{appName}.view.allergy.AllergyView',{
 
 					<tr>
 						<td width="50%" style="font-size: 14px;">
-							<div style="line-height: 20px;" class="xitem-title">eHR #: <span style="color: green;font-weight: bold;">{eHRNumber}</span></div>
+							<div style="line-height: 20px;" class="xitem-title">eHR #: <span style="color: green;font-weight: bold;">\u007BeHRNumber}</span></div>
 						</td>
 						<td width="50%">
-							<span class="apptdate"><span style="color: blue;font-weight: bold;">created: </span>{CreateDtm:date("Y/m/d")}</span>
-							<span class="appttime">{CreateDtm:date("H:i")}</span>
+							<span class="apptdate"><span style="color: blue;font-weight: bold;">created: </span>\u007BCreateDtm:date("Y/m/d")}</span>
+							<span class="appttime">\u007BCreateDtm:date("H:i")}</span>
 						</td>
 					</tr>
 
 					<tr>
 						<td colspan=2 width="100%"  style="font-size: 14px;">
-							<div style="line-height: 20px;" class="xitem-title">Name: {AllergenName}</div>
-							<div style="line-height: 20px;" class="xitem-caption">Hospital: {CreateByHospital}</div>
-							<div style="line-height: 20px;" class="xitem-caption">Level Of Certainty: {LevelOfCertainty}</div>
+							<div style="line-height: 20px;" class="xitem-title">Name: \u007BAllergenName}</div>
+							<div style="line-height: 20px;" class="xitem-caption">Hospital: \u007BCreateByHospital}</div>
+							<div style="line-height: 20px;" class="xitem-caption">Level Of Certainty: \u007BLevelOfCertainty}</div>
 						</td>
 					</tr>
 
 					<tr>
 						<td colspan=2 width="100%" style="font-size: 14px;">
-							<span>Manifestation: <span style="color: red;font-weight: bold;">{Manifestation}</span></span>
+							<span>Manifestation: <span style="color: red;font-weight: bold;">\u007BManifestation}</span></span>
 						</td>
 					</tr>
 					<tr>
 					<td colspan=2 width="100%" style="font-size: 14px;">
-						<span>Remark: {AllergenRemark}</span>
+						<span>Remark: \u007BAllergenRemark}</span>
 					</td>
 				</tr>
 

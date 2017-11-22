@@ -2,7 +2,7 @@ Ext.define('{appName}.Application', {
 	extend: 'Ext.app.Application',
 	name: '{appName}',
 	requires: [
-		'{appName}.*'
+		'{appName}.*',
 		'Ext.dataview.List',
 		'Ext.field.Date',
 		'Ext.Video',
@@ -12,6 +12,10 @@ Ext.define('{appName}.Application', {
 	defaultToken: 'homeview',
 
 	launch: function () {
+		Ext.getBody().removeCls('launching');
+		var elem = document.getElementById("splash");
+		elem.parentNode.removeChild(elem);
+
 		Ext.Viewport.add([{ xtype: 'loginview'}]);
 	},
 

@@ -1,6 +1,6 @@
 .maintoolbar {
 	color: white !important;
-	background-color: red !important;
+	background-color: $base-color !important;
 }
 
 .maintoolbar .x-title{

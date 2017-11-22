@@ -1,3 +1,9 @@
+.menuview {
+	background-color: $base-color; 
+	font-size: '18px';
+	color: 'white';
+}
+
 $main-nav-width: dynamic(260px);
 $main-nav-collapsed-width: dynamic(64px);
 .main-nav-slid-out {

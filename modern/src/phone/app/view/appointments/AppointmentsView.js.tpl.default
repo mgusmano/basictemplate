@@ -15,7 +15,7 @@ Ext.define('{appName}.view.appointments.AppointmentsView',{
 	items: [
 		{
 			xtype: 'list',
-			bind: '{appointments}',
+			bind: '\u007Bappointments}',
 			emptyText: 'No activity was found',
 			striped: true,
 			grouped: true,
@@ -87,22 +87,21 @@ Ext.define('{appName}.view.appointments.AppointmentsView',{
 
 
 
-
 			itemTpl: [ `
 				<div class="testview" style="width: 100%;border: 0px solid green;">
 					<table style="width: 100%;border: 0px solid green;" >
 						<tr>
 							<td rowspan="2" width="70px">
-								<span class="action action-{type} {type:actionIconCls}"></span>
-								<div class="picture" style="background-image: url({recipient.picture})"></div>
+								<span class="action action-\u007Btype} \u007Btype}"></span>
+								<div class="picture" style="background-image: url(\u007Brecipient.picture})"></div>
 							</td>
 							<td style="font-size: 16px;">
-								<div style="line-height: 20px;" class="xitem-title">{desc}</div>
-								<div style="line-height: 20px;" class="xitem-caption">{doctor}</div>
+								<div style="line-height: 20px;" class="xitem-title">\u007Bdesc}</div>
+								<div style="line-height: 20px;" class="xitem-caption">\u007Bdoctor}</div>
 							</td>
 							<td width="25%" >
-								<div style="font-size: 12px;" class="apptdate">{created:date("Y/m/d")}</div>
-								<div style="font-size: 12px;"class="appttime">{created:date("H:i")}</div>
+								<div style="font-size: 12px;" class="apptdate">\u007Bcreated:date("Y/m/d")}</div>
+								<div style="font-size: 12px;"class="appttime">\u007Bcreated:date("H:i")}</div>
 							</td>
 						</tr>
 					</table>

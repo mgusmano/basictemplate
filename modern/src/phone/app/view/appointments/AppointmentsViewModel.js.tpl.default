@@ -5,7 +5,7 @@ Ext.define('{appName}.view.appointments.AppointmentsViewModel', {
 		appointments: {
 			autoLoad: true,
 			data: [
-				{created: "2015-09-07T09:08:46.000Z", desc: "Office Visit", first: "Marc", last: "Gusmano", "type":"phone", recipient: { "picture":"resources/phone/phone/portraits/men/10.jpg"}, doctor: "Dr. Bill Smith"},
+				{created: "2015-09-07T09:08:46.000Z", desc: "Office Visit", first: "Marc", last: "Gusmano", "type":"phone", recipient: { "picture":"resources/phone/portraits/men/10.jpg"}, doctor: "Dr. Bill Smith"},
 				{created: "2016-09-07T09:08:46.000Z", desc: "Follow-up from Surgery", first: "Marc", last: "Gusmano", "type":"skype", recipient: { "picture":"resources/phone/portraits/men/11.jpg"}, doctor: "Dr. Joe Travers"},
 				{created: "2016-09-07T09:08:46.000Z", desc: "Another Follow-up", first: "Marc", last: "Gusmano", "type":"linkedin", recipient: { "picture":"resources/phone/portraits/men/12.jpg"}, doctor: "Dr. Dave Andrews"},
 				{created: "2017-09-07T09:08:46.000Z", desc: "Review for foot surgery", first: "Marc", last: "Gusmano", "type":"email", recipient: { "picture":"resources/phone/portraits/men/13.jpg"}, doctor: "Dr. Bob Ricci"},

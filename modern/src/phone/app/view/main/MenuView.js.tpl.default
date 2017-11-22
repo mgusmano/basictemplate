@@ -4,17 +4,18 @@ Ext.define('{appName}.view.main.MenuView', {
 	controller: 'menuviewcontroller',
 	layout: 'fit',
 	width:180,
+	cls: 'menuview',
 
-	style: { background: 'red' },
 	items: [
 		{
 			xtype: 'container',
-			style: { background: 'red', color: 'white' },
+			cls: 'menuview',
 			layout: 'vbox',
 			defaults: {
 				xtype: 'button',
 				height: 60,
-				style: { fontSize: '18px', background: 'red', color: 'white' },
+				style: { fontSize: '18px', color: 'white' },
+				cls: 'menuview',
 				handler: 'onMenuClick'
 			},
 			items: [
