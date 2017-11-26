@@ -1,59 +1,112 @@
 {% 
-    var not62 = !values.frameworkIsV62 || values.frameworkIsV62 === 'false';
-    var not65 = !values.frameworkIsV65 || values.frameworkIsV65 === 'false';
-        
-    if (values.themeName == 'default') {
-        values.classicTheme = "theme-triton";
-        values.modernTheme = "theme-material";
-        
-        if (not62 && not65) {
-            values.modernTheme = "theme-triton";
-        }
-        
-        if (values.toolkit == "classic") {
-            values.themeName = values.classicTheme;
-        }
-        else {
-            values.themeName = values.modernTheme;
-        }
-    }
-    else {
-        values.classicTheme = values.modernTheme = values.themeName;
-    }
-%}{
-    "name": "{name}",
-    "namespace": "{name}",
-    "version": "1.0.0.0",
-    "framework": "{frameworkKey}",
-    <tpl if="universal == false">"toolkit": "{toolkit}",</tpl>
-    <tpl if="universal == false">"theme": "{themeName}",</tpl>
-    "requires": [
-        "font-awesome"
-    ],
-    "indexHtmlPath": "index.html",
-		"mjg": "mjg",
-    /**
-     * Comma-separated string with the paths of directories or files to search. Any classes
-     * declared in these locations will be available in your class "requires" or in calls
-     * to "Ext.require". The "app.dir" variable below is expanded to the path where the
-     * application resides (the same folder in which this file is located).
-     */
-    "classpath": [
-        "app"<tpl if="universal == true">,
-        "$\u007Btoolkit.name}/src"</tpl>
-    ],
 
-    /**
-     * Comma-separated string with the paths of directories or files to search. Any classes
-     * declared in these locations will be automatically required and included in the build.
-     * If any file defines an Ext JS override (using Ext.define with an "override" property),
-     * that override will in fact only be included in the build if the target class specified
-     * in the "override" property is also included.
-     */
-    "overrides": [
-        "overrides"<tpl if="universal == true">,
-        "$\u007Btoolkit.name}/overrides"</tpl>
-    ],
+//	if (values.viewName == 'gusmano') { values.Universal2 = true }
+//	else { values.Universal2 = false }
+
+values.xuniversal = ''
+
+//	var not62 = !values.frameworkIsV62 || values.frameworkIsV62 === 'false';
+//	var not65 = !values.frameworkIsV65 || values.frameworkIsV65 === 'false';
+
+//console.log('***** app.json')
+//for (var p in values) {
+//	if( values.hasOwnProperty(p) ) {
+//		console.log(p + " , " + values[p]);
+//	}
+//}
+//console.log('***** app.json')
+
+//	if (values.themeName == 'default') {
+//		values.classicTheme = "theme-triton";
+//		values.modernTheme = "theme-material";
+//		if (not62 && not65) {
+//			values.modernTheme = "theme-triton";
+//		}
+//		if (values.toolkit == "classic") {
+//			values.themeName = values.classicTheme;
+//		}
+//		else {
+//			values.themeName = values.modernTheme;
+//		}
+//	}
+//	else {
+//		values.classicTheme = values.modernTheme = values.themeName;
+//	}
+%}{
+	"name": "{name}",
+	"namespace": "{name}",
+	"version": "1.0.0.0",
+	"framework": "{frameworkKey}",
+	"indexHtmlPath": "index.html",
+	"requires": [
+		//"calendar",
+		//"charts",
+		//"d3",
+		//"pivot",
+		//"pivot-d3",
+		//"ux",
+		"font-awesome"
+	],
+
+<tpl if="universal == true">
+	"builds": {
+		"desktop": {
+			"toolkit": "modern",
+			"theme": "{modernTheme}"
+		},
+		"phone": {
+			"toolkit": "modern",
+			"theme": "{modernTheme}"
+		}
+	},
+</tpl>
+
+<tpl if="xuniversal == false">"toolkit": "{toolkit}",</tpl>
+<tpl if="xuniversal == false">"theme": "{themeName}",</tpl>
+
+	"classpath": ["<tpl if="universal == true">shared/</tpl>app"<tpl if="universal == true">,"$\u007Bbuild.id}/app"</tpl>],
+	"overrides": ["<tpl if="universal == true">shared/</tpl>overrides"<tpl if="universal == true">,"$\u007Bbuild.id}/overrides"</tpl>],
+
+	"resources": [
+		{
+			"path": "resources",
+			"output": "shared"
+		}
+<tpl if="universal == true">,
+		//{
+		//	"path": "$\u007btoolkit.name}/resources"
+		//},
+		{
+			"path": "$\u007bbuild.id}/resources"
+		}
+</tpl>
+	],
+
+<tpl if="universal == true">
+	"output": {
+		"base": "$\u007bworkspace.build.dir}/$\u007bbuild.environment}/$\u007bapp.name}",
+		"page": "index.html",
+		"manifest": "$\u007bbuild.id}.json",
+		"js": "$\u007bbuild.id}/app.js",
+		"appCache": {
+			"enable": false
+		},
+		"resources": {
+			"path": "$\u007bbuild.id}/resources",
+			"shared": "resources"
+		}
+	},
+	<tpl else>
+	"output": {
+		"base": "$\u007bworkspace.build.dir}/$\u007bbuild.environment}/$\u007bapp.name}",
+		"appCache": {
+			"enable": false
+		}
+	},
+</tpl>
+
+
+
 
     /**
      * Fashion build configuration properties.
@@ -218,9 +271,9 @@
      *
      */
     "js": [<tpl if="universal == false">
-        /*{
+        {
             "path": "$\u007Bframework.dir}/build/ext-<tpl if="toolkit == 'modern'">modern-all<tpl else>all-rtl</tpl>-debug.js"
-        },*/</tpl>
+        },</tpl>
         {
             "path": "app.js",
             "bundle": true
@@ -234,9 +287,9 @@
     "classic": {
         "js": [
             // Remove this entry to individually load sources from the framework.
-            //{
-            //    "path": "$\u007Bframework.dir}/build/ext-all-rtl-debug.js"
-            //}
+            {
+                "path": "$\u007Bframework.dir}/build/ext-all-rtl-debug.js"
+            }
         ]
     },
 
@@ -246,9 +299,9 @@
     "modern": {
         "js": [
             // Remove this entry to individually load sources from the framework.
-            //{
-            //    "path": "$\u007Bframework.dir}/build/ext-modern-all-debug.js"
-            //}
+            {
+                "path": "$\u007Bframework.dir}/build/ext-modern-all-debug.js"
+            }
         ]
     },</tpl>
 
@@ -381,73 +434,6 @@
         "css": "bootstrap.css"
     },
 
-    /**
-     * Controls the output directory for build resources.  May be set with
-     * either a string:
-     *
-     *      "$\u007bworkspace.build.dir}/$\u007bbuild.environment}/$\u007bapp.name}"
-     *
-     * or an object containing values for various types of build artifacts:
-     *
-     *      {
-     *          "base": "$\u007bworkspace.build.dir}/$\u007bbuild.environment}/$\u007bapp.name}",
-     *          "page": {
-     *              "path": "../index.html",
-     *              "enable": false
-     *          },
-     *          "css": "$\u007bapp.output.resources}/$\u007bapp.name}-all.css",
-     *          "js": {
-     *              "path": "app.js",
-     *              // This setting constrols the output language level.  Set to 'ES6' to 
-     *              // disable the transpiler
-     *              "version": "ES5"
-     *          },
-     *          "microloader": {
-     *              "path": "microloader.js",
-     *              "embed": true,
-     *              "enable": true
-     *          },
-     *          "manifest": {
-     *              "path": "app.json",
-     *              "embed": false,
-     *              "enable": "$\u007bapp.output.microloader.enable}"
-     *          },
-     *          "resources": "resources",
-     *          "slicer": {
-     *              "path": "$\u007bapp.output.resources}/images",
-     *              "enable": false
-     *          },
-     *          // Setting the "enable" property of this object to a Truthy value will cause a Application Cache
-     *          // manifest file to be generated based on this files appCache object. This file will then be injected
-     *          // into the index.html file of the built application
-     *          "appCache":{
-     *              "enable": false"
-     *          }
-     *      }
-     *
-     */
-    <tpl if="universal == true">
-    "output": {
-        "base": "$\u007bworkspace.build.dir}/$\u007bbuild.environment}/$\u007bapp.name}",
-        "page": "index.html",
-        "manifest": "$\u007bbuild.id}.json",
-        "js": "$\u007bbuild.id}/app.js",
-        "appCache": {
-            "enable": false
-        },
-        "resources": {
-            "path": "$\u007bbuild.id}/resources",
-            "shared": "resources"
-        }
-    },
-    <tpl else>
-    "output": {
-        "base": "$\u007bworkspace.build.dir}/$\u007bbuild.environment}/$\u007bapp.name}",
-        "appCache": {
-            "enable": false
-        }
-    },
-    </tpl>
     
     /**
     * Controls for localStorage caching
@@ -499,22 +485,7 @@
         "fallback": []
     },
 
-    /**
-     * Extra resources to be copied into the resource folder as specified in the "resources"
-     * property of the "output" object. Folders specified in this list will be deeply copied.
-     */
-    "resources": [
-        {
-            "path": "resources",
-            "output": "shared"
-        }<tpl if="universal == true">,
-        {
-            "path": "$\u007btoolkit.name}/resources"
-        },
-        {
-            "path": "$\u007bbuild.id}/resources"
-        }</tpl>
-    ],
+
 
     /**
      * Directory path to store all previous production builds. Note that the content
@@ -551,51 +522,7 @@
     "slicer": null,
 </tpl></tpl>
 
-    /**
-     * Build Profiles. This object's properties are each a "build profile". You can
-     * add as many as you need to produce optimized builds for devices, themes, locales
-     * or other criteria. Your "Ext.beforeLoad" hook (see index.html) is responsible for
-     * selecting the desired build profile by setting "Ext.manifest" to one of these
-     * names.
-     *<tpl if="universal == true">
-     *     "builds": {
-     *         "classic": {
-     *             "toolkit": "classic",
-     *             "theme": "theme-neptune"
-     *         },
-     *
-     *         "modern": {
-     *             "toolkit": "modern",
-     *             "theme": "theme-neptune"
-     *         }
-     *     }
-     *</tpl>
-     */
-    <tpl if="universal == true">
-    "builds": {
-        "classic": {
-            "toolkit": "classic",
-            "theme": "{classicTheme}",
-            "sass": {
-                "generated": {
-                    "var": "classic/sass/save.scss",
-                    "src": "classic/sass/save"
-                }
-            }
-        },
 
-        "modern": {
-            "toolkit": "modern",
-            "theme": "{modernTheme}",
-            "sass": {
-                "generated": {
-                    "var": "modern/sass/save.scss",
-                    "src": "modern/sass/save"
-                }
-            }
-        }
-    },
-    </tpl>
     
     /**
      * File / directory name patttern to ignore when copying to the builds. Must be a
