@@ -1,6 +1,7 @@
 .actionview { 
 	border-left: 0; 
-	border-top: 0; 
+	border-top: 0;
+	padding: 0; 
 	color: $base_color; 
 	background-color: darken($base_color,25%) ;
 }
@@ -8,7 +9,7 @@
 @include button-ui(
   $ui: 'actionbutton',
 	$background-color: transparent,
-	$color: $base_color,
+	$color: white,
   $border-color: transparent
   // $inner-border-color-focus: transparent,
   // $inner-border-color-focus-over: transparent,

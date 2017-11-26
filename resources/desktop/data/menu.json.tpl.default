@@ -4,8 +4,9 @@
 		"children": [
 			{ "text": "Home", "iconCls": "x-fa fa-home", "xtype": "homeview", "leaf": true },
 			{ "text": "Users", "iconCls": "x-fa fa-user", "xtype": "usersview",	"leaf": true },
-//			{ "text": "Tunes Thumb View", "iconCls": "x-fa fa-thumbs-o-up", "xtype": "thumbview",	"leaf": true },
-//			{ "text": "Tunes Grid View", "iconCls": "x-fa fa-table", "xtype": "gridview",	"leaf": true }
+//add new items on the next line (from sencha-node generate viewpackage)
+
+
 		]
 	}
 }
