@@ -1,38 +1,4 @@
-{% 
-
-//	if (values.viewName == 'gusmano') { values.Universal2 = true }
-//	else { values.Universal2 = false }
-
-values.xuniversal = ''
-
-//	var not62 = !values.frameworkIsV62 || values.frameworkIsV62 === 'false';
-//	var not65 = !values.frameworkIsV65 || values.frameworkIsV65 === 'false';
-
-//console.log('***** app.json')
-//for (var p in values) {
-//	if( values.hasOwnProperty(p) ) {
-//		console.log(p + " , " + values[p]);
-//	}
-//}
-//console.log('***** app.json')
-
-//	if (values.themeName == 'default') {
-//		values.classicTheme = "theme-triton";
-//		values.modernTheme = "theme-material";
-//		if (not62 && not65) {
-//			values.modernTheme = "theme-triton";
-//		}
-//		if (values.toolkit == "classic") {
-//			values.themeName = values.classicTheme;
-//		}
-//		else {
-//			values.themeName = values.modernTheme;
-//		}
-//	}
-//	else {
-//		values.classicTheme = values.modernTheme = values.themeName;
-//	}
-%}{
+{
 	"name": "{name}",
 	"namespace": "{name}",
 	"version": "1.0.0.0",
@@ -40,60 +6,53 @@ values.xuniversal = ''
 	"template": "{template}",
 	"indexHtmlPath": "index.html",
 	"requires": [
-		//"calendar",
-		//"charts",
-		//"d3",
-		//"pivot",
-		//"pivot-d3",
-		//"ux",
+		//** "calendar","charts","d3","pivot","pivot-d3","ux","font-awesome" **//
 		"font-awesome"
 	],
-
 <tpl if="universal == true">
 	"builds": {
-		"desktop": {
-			"toolkit": "modern",
-			"theme": "{modernTheme}"
-		},
-		"phone": {
+		"moderndesktop": {
 			"toolkit": "modern",
 			"theme": "{modernTheme}"
 		}
+
 	},
 </tpl>
-
-<tpl if="xuniversal == false">"toolkit": "{toolkit}",</tpl>
-<tpl if="xuniversal == false">"theme": "{themeName}",</tpl>
-
-	"classpath": ["<tpl if="universal == true">shared/</tpl>app"<tpl if="universal == true">,"$\u007Bbuild.id}/app"</tpl>],
-	"overrides": ["<tpl if="universal == true">shared/</tpl>overrides"<tpl if="universal == true">,"$\u007Bbuild.id}/overrides"</tpl>],
-
+	"classpath": ["<tpl if="universal == true">app/shared/</tpl>src"<tpl if="universal == true">,"app/$\u007Bbuild.id}/src"</tpl>],
+	"overrides": ["<tpl if="universal == true">app/shared/</tpl>overrides"<tpl if="universal == true">,"app/$\u007Bbuild.id}/overrides"</tpl>],
+<tpl if="universal == true">
+	"sass": {
+		"namespace": "{name}",
+<tpl if="universal == false">
+		"generated": {
+			"var": "app/shared/sass/save.scss",
+			"src": "app/shared/sass/save"
+		},</tpl>
+		"var": [
+			"app/shared/sass/var.scss",
+			"app/$\u007Bbuild.id}/sass/var.scss"
+		],
+		"src": [
+			"app/shared/src/sass/src.scss",
+			"app/$\u007Bbuild.id}/sass/src.scss"
+		]
+	},
+</tpl>
 	"resources": [
-		{
-			"path": "resources",
-			"output": "shared"
-		}
-<tpl if="universal == true">,
-		//{
-		//	"path": "$\u007btoolkit.name}/resources"
-		//},
-		{
-			"path": "$\u007bbuild.id}/resources"
-		}
+		{ "path": "resources", "output": "shared" }
+<tpl if="universal == true">
+		,{ "path": "resources/$\u007Bbuild.id}" }
 </tpl>
 	],
-
 <tpl if="universal == true">
 	"output": {
-		"base": "$\u007bworkspace.build.dir}/$\u007bbuild.environment}/$\u007bapp.name}",
+		"base": "$\u007Bworkspace.build.dir}/$\u007Bbuild.environment}/$\u007bapp.name}",
 		"page": "index.html",
-		"manifest": "$\u007bbuild.id}.json",
-		"js": "$\u007bbuild.id}/app.js",
-		"appCache": {
-			"enable": false
-		},
+		"manifest": "generatedFiles/$\u007Bbuild.id}.json",
+		"js": "generatedFiles/$\u007Bbuild.id}/app.js",
+		"appCache": {"enable": false},
 		"resources": {
-			"path": "$\u007bbuild.id}/resources",
+			"path": "$\u007Bbuild.id}/resources",
 			"shared": "resources"
 		}
 	},
@@ -105,437 +64,120 @@ values.xuniversal = ''
 		}
 	},
 </tpl>
+	"fashion": {
+<tpl if="frameworkIsV65 == true">"missingParameters": "error",</tpl>
+		"inliner": {"enable": false}
+	},
 
+	"js": [<tpl if="universal == false">
+		{
+			"path": "$\u007Bframework.dir}/build/ext-<tpl if="toolkit == 'modern'">modern-all<tpl else>all-rtl</tpl>-debug.js"
+		},</tpl>
+		{
+			"path": "app.js",
+			"bundle": true
+		}
+	],
+<tpl if="universal == true">
+	"classic": {
+		"js": [
+			//{path": "$\u007Bframework.dir}/build/ext-all-rtl-debug.js"}
+		]
+	},
 
+	"modern": {
+		"js": [
+			//{"path": "$\u007Bframework.dir}/build/ext-modern-all-debug.js"}
+		]
+	},
+</tpl>
+	"css": [
+		{
+			"path": "$\u007bbuild.out.css.path}",
+			"bundle": true,
+			"exclude": ["fashion"]
+		}
+	],
 
+	"loader": {
+		"cache": false,
+		"cacheParam": "_dc"
+	},
 
-    /**
-     * Fashion build configuration properties.
-     */
-    "fashion": {
-        <tpl if="frameworkIsV65 == true">"missingParameters": "error",</tpl>
-        "inliner": {
-            /**
-             * Disable resource inliner. Production builds enable this by default.
-             */
-            "enable": false
-        }
-    },
+	"production": {
+		"output": {
+			"appCache": {
+				"enable": true,
+				"path": "cache.appcache"
+			}
+		},
+		"loader": {
+			"cache": "$\u007Bbuild.timestamp}"
+		},
+		"cache": {
+			"enable": true
+		},
+		"compressor": {
+			"type": "yui"
+		}
+	},
 
-    /**
-     * Sass configuration properties.
-     */
-    "sass": {
-        /**
-         * The root namespace to use when mapping *.scss files to classes in the
-         * sass/src and sass/var directories. For example, "{name}.view.Foo" would
-         * map to "sass/src/view/Foo.scss". If we changed this to "{name}.view" then
-         * it would map to "sass/src/Foo.scss". To style classes outside the app's
-         * root namespace, change this to "". Doing so would change the mapping of
-         * "{name}.view.Foo" to "sass/src/{name}/view/Foo.scss".
-         */
-        "namespace": "{name}",
+	"testing": {},
 
-        /**
-         * Generated sass source settings
-         *
-         *      "generated": {
-         *         // The file used to save sass variables edited via Sencha Inspector and Sencha Themer.
-         *         // This file will automatically be applied to the end of the scss build.
-         *         "var": "sass/save.scss",
-         *      
-         *         // The directory used to save generated sass sources.
-         *         // This directory will automatically be applied to the end of the scss build.
-         *         "src": "sass/save"
-         *      }
-         *
-         */
-         <tpl if="universal == false">
-        "generated": {
-            "var": "sass/save.scss",
-            "src": "sass/save"
-        },
-        </tpl>
+	"development": {
+		"watch": {
+			"delay": 250
+		}
+	},
 
-        /**
-         * Comma-separated list of files or folders containing extra Sass. These
-         * files are automatically included in the Sass compilation. By default this
-         * is just "etc/all.scss" to allow import directives to control the order
-         * other files are included.
-         *
-         * All "etc" files are included at the top of the Sass compilation in their
-         * dependency order:
-         *
-         *      +-------+---------+
-         *      |       | base    |
-         *      | theme +---------+
-         *      |       | derived |
-         *      +-------+---------+
-         *      | packages        |  (in package dependency order)
-         *      +-----------------+
-         *      | application     |
-         *      +-----------------+
-         */
-        "etc": [
-            "sass/etc/all.scss"<tpl if="universal == true">,
-            "$\u007Btoolkit.name}/sass/etc/all.scss"</tpl>
-        ],
-
-        /**
-         * Comma-separated list of folders containing Sass variable definitions
-         * files. These file can also define Sass mixins for use by components.
-         *
-         * All "var" files are included after "etc" files in the Sass compilation in
-         * dependency order:
-         *
-         *      +-------+---------+
-         *      |       | base    |
-         *      | theme +---------+
-         *      |       | derived |
-         *      +-------+---------+
-         *      | packages        |  (in package dependency order)
-         *      +-----------------+
-         *      | application     |
-         *      +-----------------+
-         *
-         * The "sass/var/all.scss" file is always included at the start of the var
-         * block before any files associated with JavaScript classes.
-         */
-        "var": [
-            "sass/var/all.scss",
-            "sass/var"<tpl if="universal == true">,
-            "$\u007Btoolkit.name}/sass/var/all.scss",
-            "$\u007Btoolkit.name}/sass/var"</tpl>
-        ],
-
-        /**
-         * Comma-separated list of folders containing Sass rule files.
-         *
-         * All "src" files are included after "var" files in the Sass compilation in
-         * dependency order (the same order as "etc"):
-         *
-         *      +-------+---------+
-         *      |       | base    |
-         *      | theme +---------+
-         *      |       | derived |
-         *      +-------+---------+
-         *      | packages        |  (in package dependency order)
-         *      +-----------------+
-         *      | application     |
-         *      +-----------------+
-         */
-        "src": [
-            "sass/src"<tpl if="universal == true">,
-            "$\u007Btoolkit.name}/sass/src"</tpl>
-        ]
-    },
-
-    /**
-     * List of all JavaScript assets in the right execution order.
-     *
-     * Each item is an object with the following format:
-     *
-     *      {
-     *          // Path to file. If the file is local this must be a relative path from
-     *          // this app.json file.
-     *          //
-     *          "path": "path/to/script.js",   // REQUIRED
-     *
-     *          // Set to true on one file to indicate that it should become the container
-     *          // for the concatenated classes.
-     *          //
-     *          "bundle": false,    // OPTIONAL
-     *
-     *          // Set to true to include this file in the concatenated classes.
-     *          //
-     *          "includeInBundle": false,  // OPTIONAL
-     *
-     *          // Specify as true if this file is remote and should not be copied into the
-     *          // build folder. Defaults to false for a local file which will be copied.
-     *          //
-     *          "remote": false,    // OPTIONAL
-     *
-     *          // If not specified, this file will only be loaded once, and cached inside
-     *          // localStorage until this value is changed. You can specify:
-     *          //
-     *          //   - "delta" to enable over-the-air delta update for this file
-     *          //   - "full" means full update will be made when this file changes
-     *          //
-     *          "update": "",        // OPTIONAL
-     *
-     *          // A value of true indicates that is a development mode only dependency.
-     *          // These files will not be copied into the build directory or referenced
-     *          // in the generate app.json manifest for the micro loader.
-     *          //
-     *          "bootstrap": false   // OPTIONAL
-     *      }
-     *
-     */
-    "js": [<tpl if="universal == false">
-        {
-            "path": "$\u007Bframework.dir}/build/ext-<tpl if="toolkit == 'modern'">modern-all<tpl else>all-rtl</tpl>-debug.js"
-        },</tpl>
-        {
-            "path": "app.js",
-            "bundle": true
-        }
-    ],
-
-    <tpl if="universal == true">
-    /**
-     * Settings specific to classic toolkit builds.
-     */
-    "classic": {
-        "js": [
-            // Remove this entry to individually load sources from the framework.
-            {
-                "path": "$\u007Bframework.dir}/build/ext-all-rtl-debug.js"
-            }
-        ]
-    },
-
-    /**
-     * Settings specific to modern toolkit builds.
-     */
-    "modern": {
-        "js": [
-            // Remove this entry to individually load sources from the framework.
-            {
-                "path": "$\u007Bframework.dir}/build/ext-modern-all-debug.js"
-            }
-        ]
-    },</tpl>
-
-    /**
-     * List of all CSS assets in the right inclusion order.
-     *
-     * Each item is an object with the following format:
-     *
-     *      {
-     *          // Path to file. If the file is local this must be a relative path from
-     *          // this app.json file.
-     *          //
-     *          "path": "path/to/stylesheet.css",   // REQUIRED
-     *
-     *          // Specify as true if this file is remote and should not be copied into the
-     *          // build folder. Defaults to false for a local file which will be copied.
-     *          //
-     *          "remote": false,    // OPTIONAL
-     *
-     *          // If not specified, this file will only be loaded once, and cached inside
-     *          // localStorage until this value is changed. You can specify:
-     *          //
-     *          //   - "delta" to enable over-the-air delta update for this file
-     *          //   - "full" means full update will be made when this file changes
-     *          //
-     *          "update": ""      // OPTIONAL
-     *      }
-     */
-    "css": [
-        {
-            // this entry uses an ant variable that is the calculated
-            // value of the generated output css file for the app,
-            // defined in .sencha/app/defaults.properties
-            "path": "$\u007bbuild.out.css.path}",
-            "bundle": true,
-            "exclude": ["fashion"]
-        }
-    ],
-
-    /**
-     * This option is used to configure the dynamic loader. At present these options
-     * are supported.
-     *
-     */
-     "loader": {
-         // This property controls how the loader manages caching for requests:
-         //
-         //   - true: allows requests to receive cached responses
-         //   - false: disable cached responses by adding a random "cache buster"
-         //   - other: a string (such as the build.timestamp shown here) to allow
-         //     requests to be cached for this build.
-         //
-         "cache": false,
-
-         // When "cache" is not true, this value is the request parameter used
-         // to control caching.
-         //
-         "cacheParam": "_dc"
-     },
-
-    /**
-     * Settings specific to production builds.
-     */
-    "production": {
-        "output": {
-            "appCache": {
-                "enable": true,
-                "path": "cache.appcache"
-            }
-        },
-        "loader": {
-            "cache": "$\u007Bbuild.timestamp}"
-        },
-        "cache": {
-            "enable": true
-        },
-        "compressor": {
-            "type": "yui"
-        }
-    },
-    
-    /**
-     * Settings specific to testing builds.
-     */
-    "testing": {
-    },
-    
-    /**
-     * Settings specific to development builds.
-     */
-    "development": {
-        "watch": {
-            "delay": 250
-        }
-    },
-
-    /**
-     * Controls the output structure of development-mode (bootstrap) artifacts. May
-     * be specified by a string:
-     *
-     *      "bootstrap": "$\u007Bapp.dir}"
-     *
-     * This will adjust the base path for all bootstrap objects, or expanded into object
-     * form:
-     *
-     *      "bootstrap": {
-     *          "base": "$\u007Bapp.dir}",
-     *          "manifest": "bootstrap.json",
-     *          "microloader": "bootstrap.js",
-     *          "css": "bootstrap.css"
-     *      }
-     *
-     * You can optionally exclude entries from the manifest. For example, to exclude
-     * the "loadOrder" (to help development load approximate a build) you can add:
-     *
-     *      "bootstrap": {
-     *          "manifest": {
-     *              "path": "bootstrap.json",
-     *              "exclude": "loadOrder"
-     *          }
-     *      }
-     *
-     */
-    "bootstrap": {
-        "base": "$\u007bapp.dir}",
-        <tpl if="universal == true">
-        "manifest": "$\u007bbuild.id}.json",
-        </tpl>
-        "microloader": "bootstrap.js",
-        "css": "bootstrap.css"
-    },
-
-    
-    /**
-    * Controls for localStorage caching
-    *   "cache": {
-    *       // This property controls whether localStorage caching of this manifest file is on or off.
-    *       // if disabled no deltas will be generated during a build and full updates will be disabled
-    *       "enable": false,
-    *
-    *       // This property allows for global toggle of deltas.
-    *       // If set to a string the value will be used as the path to where deltas will be generated relative to you build.
-    *       // If set to a Truthy Value the default path ok "deltas" will be used
-    *       // If set to a Falsey value or if this property is not present deltas will be disabled and not generated.
-    *
-    *       "deltas": "deltas"
-    *   }
-    */
-    <tpl if="universal == true">
-    "cache": {
-        "enable": false,
-        "deltas": "$\u007bbuild.id}/deltas"
-    },
-    <tpl else>
-    "cache": {
-        "enable": false,
-        "deltas": true
-    },
-    </tpl>
-
-    /**
-     * Used to automatically generate cache.manifest (HTML 5 application cache manifest)
-     * file when you build.
-     */
-    "appCache": {
-        /**
-         * List of items in the CACHE MANIFEST section
-         */
-        "cache": [
-            "index.html"
-        ],
-        /**
-         * List of items in the NETWORK section
-         */
-        "network": [
-            "*"
-        ],
-        /**
-         * List of items in the FALLBACK section
-         */
-        "fallback": []
-    },
-
-
-
-    /**
-     * Directory path to store all previous production builds. Note that the content
-     * generated inside this directory must be kept intact for proper generation of
-     * deltas between updates.
-     */
-    <tpl if="universal == true">
-    "archivePath": "archive/$\u007bbuild.id}",
-    <tpl else>
-    "archivePath": "archive",
-    </tpl>
-
-<tpl if="universal == false"><tpl if="toolkit == 'classic'">
-    /**
-     * Additional resources used during theme slicing operations
-     */
-    "slicer": {
-        "js": [
-            {
-                "path": "sass/example/custom.js",
-                "isWidgetManifest": true
-            }
-        ],
-        "output": {
-            "appCache": {
-                "enable": false
-            }
-        },
-        "cache": {
-            "enable": false
-        }
-    },
+	"bootstrap": {
+		"base": "$\u007bapp.dir}/generatedFiles",
+<tpl if="universal == true">"manifest": "$\u007bbuild.id}.json",</tpl>
+		"microloader": "bootstrap.js",
+		"css": "bootstrap.css"
+	},
+<tpl if="universal == true">
+	"cache": {
+			"enable": false,
+			"deltas": "$\u007Bbuild.id}/deltas"
+	},
 <tpl else>
-    "slicer": null,
+	"cache": {
+			"enable": false,
+			"deltas": true
+	},
+</tpl>
+	"appCache": {
+		"cache": ["index.html"],
+		"network": ["*"],
+		"fallback": []
+	},
+<tpl if="universal == false"><tpl if="toolkit == 'classic'">
+	"slicer": {
+		"js": [
+			{
+				"path": "sass/example/custom.js",
+				"isWidgetManifest": true
+			}
+		],
+		"output": {
+			"appCache": {
+				"enable": false
+			}
+		},
+		"cache": {
+			"enable": false
+		}
+	},
+<tpl else>
+	"slicer": null,
 </tpl></tpl>
+<tpl if="universal == true">
+	"archivePath": "archive/$\u007Bbuild.id}",
+<tpl else>
+	"archivePath": "archive",
+</tpl>
+	"ignore": ["(^|/)CVS(/?$|/.*?$)"],
+	"id": "{uniqueId}"
 
-
-    
-    /**
-     * File / directory name patttern to ignore when copying to the builds. Must be a
-     * valid regular expression.
-     */
-    "ignore": [
-        "(^|/)CVS(/?$|/.*?$)"
-    ],
-
-    /**
-     * Uniquely generated id for this application, used as prefix for localStorage keys.
-     * Normally you should never change this value.
-     */
-    "id": "{uniqueId}"
 }

@@ -8,7 +8,6 @@
 	<import file="$\u007Bbasedir}/.sencha/app/build-impl.xml"/>
 
 	<!--
-	mjg
 	The following targets can be provided to inject logic before and/or after key steps
 	of the build process:
 

@@ -1,5 +1,0 @@
-Ext.define('{appName}.util.Common', {
-	singleton: true,
-	alternateClassName: 'Common',
-
-});
